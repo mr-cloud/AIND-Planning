@@ -108,7 +108,8 @@ be a set of states.  Any state that is `True` for the fluent `At(C1,JFK)` meets 
 >- Even though PDDL uses variable to describe actions as "action schema", these problems
 are not solved with First Order Logic.  They are solved with Propositional logic and must
 therefore be defined with concrete (non-variable) actions
-and literal (non-variable) fluents in state descriptions.
+and literal (non-variable) fluents in state descriptions. (e.g., Reasoning with concrete values not variables,
+which means instantiate an action before reasoning)
 >- The fluents here are mapped to a simple string representing the boolean value of each fluent
 in the system, e.g. **TTFFTT...TTF**.  This will be the state representation in 
 the `AirCargoProblem` class and is compatible with the `Node` and `Problem` 
