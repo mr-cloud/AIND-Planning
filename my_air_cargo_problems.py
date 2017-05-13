@@ -204,7 +204,7 @@ class AirCargoProblem(Problem):
         effect.append([
             expr('In({}, {})'.format(c, p))
         ])
-        return Action(expr('Unload({}, {}, {})'.format(c, p, a), precond, effect))
+        return Action(expr('Unload({}, {}, {})'.format(c, p, a)), precond, effect)
 
 def air_cargo_p1() -> AirCargoProblem:
     cargos = ['C1', 'C2']

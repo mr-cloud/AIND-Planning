@@ -170,7 +170,7 @@ def breadth_first_tree_search(problem):
 
 def depth_first_tree_search(problem):
     "Search the deepest nodes in the search tree first."
-    return tree_search(problem, Stack())
+    return tree_search(problem, Stack())  # Replace recursion with Stack.
 
 
 def depth_first_graph_search(problem):
@@ -196,7 +196,7 @@ def breadth_first_search(problem):
                 frontier.append(child)
     return None
 
-
+# Dijkstra search.
 def best_first_graph_search(problem, f):
     """Search the nodes with the lowest f scores first.
     You specify the function f(node) that you want to minimize; for example,

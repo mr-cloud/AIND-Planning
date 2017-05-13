@@ -89,7 +89,6 @@ def main(p_choices, s_choices):
 
     problems = [PROBLEMS[i-1] for i in map(int, p_choices)]
     searches = [SEARCHES[i-1] for i in map(int, s_choices)]
-
     for pname, p in problems:
 
         for sname, s, h in searches:
@@ -103,8 +102,8 @@ def main(p_choices, s_choices):
 
 def show_solution(node, elapsed_time):
     print("Plan length: {}  Time elapsed in seconds: {}".format(len(node.solution()), elapsed_time))
-    for action in node.solution():
-        print("{}{}".format(action.name, action.args))
+    # for action in node.solution():
+    #     print("{}{}".format(action.name, action.args))
 
 if __name__=="__main__":
     parser = argparse.ArgumentParser(description="Solve air cargo planning problems " + 
