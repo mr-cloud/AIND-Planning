@@ -173,6 +173,21 @@ class AirCargoProblem(Problem):
         """
         # TODO implement (see Russell-Norvig Ed-3 10.2.3  or Russell-Norvig Ed-2 11.2)
         count = 0
+        # greedy set-cover algo (may be inadmissible)
+        unsatisfied_goals = set(self.goal) - set(decode_state(node.state, self.state_map).pos)
+        while len(unsatisfied_goals) != 0:
+            count += 1
+            best_action = None
+            best_num_satisfied_goals = -1
+            for action in self.actions_list:
+                num_satisfied_goals = 0
+                for literal in action.effect_add:
+                    if unsatisfied_goals.__contains__(literal):
+                        num_satisfied_goals += 1
+                if num_satisfied_goals > best_num_satisfied_goals:
+                    best_action = action
+                    best_num_satisfied_goals = num_satisfied_goals
+                unsatisfied_goals -= set(best_action.effect_add)
         return count
 
     # instantiate action with literal.
