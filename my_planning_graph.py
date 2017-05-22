@@ -317,10 +317,10 @@ class PlanningGraph():
             [prenodes.add(PgNode_s(literal, False)) for literal in action.precond_neg]
             if prenodes.issubset(self.s_levels[level]):
                 action_node = PgNode_a(action)
-                action_node.parents.add(prenodes)
+                action_node.parents.union(prenodes)
                 for state_node in prenodes:
                     state_node.children.add(action_node)
-                candidates.add()
+                candidates.add(action_node)
         self.a_levels.append(candidates)
 
     def add_literal_level(self, level):
@@ -493,7 +493,7 @@ class PlanningGraph():
         :return: bool
         """
         # TODO test for negation between nodes
-        return (node_s1.isinstance(node_s2, self.__class__) and
+        return (isinstance(node_s2, self.__class__) and
                 node_s1.is_pos != node_s2.is_pos and
                 node_s1.symbol == node_s2.symbol)
 
