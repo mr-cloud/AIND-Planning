@@ -536,7 +536,7 @@ class PlanningGraph():
             for level, s_level in enumerate(self.s_levels):
                 if s_level.__contains__(goal_node):
                     level_sum += level
-                    continue
+                    break
         return level_sum
 
     # check if there exists a literal which is controversy for the two sides.
