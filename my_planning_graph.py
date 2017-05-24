@@ -452,12 +452,19 @@ class PlanningGraph():
         """
 
         # TODO test for Competing Needs between nodes
-        action_1 = node_a1.action
-        action_2 = node_a2.action
-        if self.is_negative(action_1.precond_neg, action_2.precond_pos):
-            return True
-        if self.is_negative(action_2.precond_neg, action_1.precond_pos):
-            return True
+        # not the purpose of the framework designer.
+        # action_1 = node_a1.action
+        # action_2 = node_a2.action
+        # if self.is_negative(action_1.precond_neg, action_2.precond_pos):
+        #     return True
+        # if self.is_negative(action_2.precond_neg, action_1.precond_pos):
+        #     return True
+
+        # use the parents to check if there exsits a mutex
+        for node_s1 in node_a1.parents:
+            for node_s2 in node_a2.parents:
+                if node_s1.is_mutex(node_s2):
+                    return True
         return False
 
     def update_s_mutex(self, nodeset: set):
@@ -493,7 +500,7 @@ class PlanningGraph():
         :return: bool
         """
         # TODO test for negation between nodes
-        return (isinstance(node_s2, self.__class__) and
+        return (isinstance(node_s2, node_s1.__class__) and
                 node_s1.is_pos != node_s2.is_pos and
                 node_s1.symbol == node_s2.symbol)
 
